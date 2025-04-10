@@ -11,9 +11,11 @@ import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
+import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
+import androidx.compose.material3.Card
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -57,6 +59,24 @@ fun Inicio() {
                     )
 
         ) {
+            Box (
+                modifier = Modifier
+                    .align(Alignment.Center)
+                    .padding(start = 70.dp)
+                    .padding(bottom = 25.dp)
+                    .size(160.dp)
+                    .paint(
+                        painterResource(id = R.drawable.bg_card_back),
+                        contentScale = ContentScale.Crop
+                    )
+
+            ){
+
+            }
+
+            Card (){
+
+            }
 
         }
 
