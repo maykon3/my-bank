@@ -25,8 +25,10 @@ import androidx.compose.ui.draw.paint
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.example.mybank.ui.theme.MyBankTheme
 
 class MainActivity : ComponentActivity() {
@@ -71,6 +73,14 @@ fun Inicio() {
                     )
 
             ){
+                Text(
+                    "000",
+                    fontSize = 15.sp,
+                    color = Color.White,
+                    fontWeight = FontWeight.Bold,
+                    modifier = Modifier
+                        .align(Alignment.CenterEnd)
+                )
 
             }
 
