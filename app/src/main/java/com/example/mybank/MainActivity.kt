@@ -45,6 +45,7 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
 import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
@@ -53,6 +54,7 @@ import androidx.compose.ui.unit.sp
 import com.example.mybank.ui.theme.MyBankTheme
 import com.example.mybank.ui.theme.Purple40
 import com.example.mybank.ui.theme.PurpleGrey80
+import com.example.mybank.ui.theme.corCinza
 
 
 class MainActivity : ComponentActivity() {
@@ -135,7 +137,9 @@ fun Inicio() {
             var cartao by remember { mutableStateOf("") }
 
            OutlinedTextField(
-                value = cartao,
+               textStyle = TextStyle(color = corCinza),
+                value = cartao.uppercase()
+               ,
                 onValueChange = {
                     newText -> cartao = newText
                 },
@@ -153,8 +157,8 @@ fun Inicio() {
                     .padding(top = 5.dp)
                ,
                colors = TextFieldDefaults.outlinedTextFieldColors(
-                   unfocusedBorderColor = Color(0xFFB0BEC5), // Ex: cinza claro quando não focado
-
+                   unfocusedBorderColor = corCinza, // Ex: cinza claro quando não focado
+                   focusedTextColor = corCinza,
                )
 
             )
