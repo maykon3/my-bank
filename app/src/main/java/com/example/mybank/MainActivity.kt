@@ -7,6 +7,7 @@ import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.BorderStroke
 import androidx.compose.foundation.background
+import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -23,15 +24,26 @@ import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
+import androidx.compose.material3.ExperimentalMaterial3Api
+import androidx.compose.material3.OutlinedTextField
 import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Text
+import androidx.compose.material3.TextField
+import androidx.compose.material3.TextFieldColors
+import androidx.compose.material3.TextFieldDefaults
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.draw.paint
+import androidx.compose.ui.graphics.Brush
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.res.colorResource
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
@@ -39,7 +51,9 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.example.mybank.ui.theme.MyBankTheme
-import com.example.mybank.ui.theme.spaceFont
+import com.example.mybank.ui.theme.Purple40
+import com.example.mybank.ui.theme.PurpleGrey80
+
 
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -54,6 +68,7 @@ class MainActivity : ComponentActivity() {
 }
 
 
+@OptIn(ExperimentalMaterial3Api::class)
 @Composable
 fun Inicio() {
     Column(
@@ -87,7 +102,7 @@ fun Inicio() {
                     "000",
                     fontSize = 15.sp,
                     color = Color.White,
-                    fontFamily = spaceFont,
+                   // fontFamily = spaceFont,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier
                         .align(Alignment.CenterEnd)
@@ -103,6 +118,46 @@ fun Inicio() {
             ){
                 CardFront(name = "Jane Appleseed", cardNumber = "9591 6489 6389 1011", expDate = "00/00")
             }
+
+        }
+
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(35.dp)
+                .padding(top = 50.dp)
+        ) {
+            Text(
+                "CARDHOULDER NAME",
+                fontSize = 15.sp,
+                fontWeight = FontWeight.Medium,
+            )
+            var cartao by remember { mutableStateOf("") }
+
+           OutlinedTextField(
+                value = cartao,
+                onValueChange = {
+                    newText -> cartao = newText
+                },
+               placeholder = {
+                   Text(
+                       "e.g. Jane Appleseed",
+                       fontSize = 16.sp,
+                       fontWeight = FontWeight.Medium,
+                       color = PurpleGrey80
+                   )
+               },
+               shape = RoundedCornerShape(10.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 5.dp)
+               ,
+               colors = TextFieldDefaults.outlinedTextFieldColors(
+                   unfocusedBorderColor = Color(0xFFB0BEC5), // Ex: cinza claro quando não focado
+
+               )
+
+            )
 
         }
 
@@ -156,7 +211,7 @@ fun CardFront(cardNumber : String, name : String,  expDate : String) {
                 Text(
                     cardNumber,
                     fontSize = 25.sp,
-                    fontFamily = spaceFont,
+                  //  fontFamily = spaceFont,
                     color = Color.White,
                     textAlign = TextAlign.Center,
                     modifier = Modifier.align(Alignment.CenterHorizontally)
@@ -173,14 +228,14 @@ fun CardFront(cardNumber : String, name : String,  expDate : String) {
                     Text(
                         name.uppercase(),
                         fontSize = 10.sp,
-                        fontFamily = spaceFont,
+                      //  fontFamily = spaceFont,
                         fontWeight = FontWeight.Bold,
                         color = Color.White,
                     )
                     Text(
                         expDate,
                         fontSize = 12.sp,
-                        fontFamily = spaceFont,
+                      //  fontFamily = spaceFont,
                         fontWeight = FontWeight.Bold,
                         color = Color.White,
                     )
