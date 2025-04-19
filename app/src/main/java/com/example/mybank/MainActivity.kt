@@ -22,6 +22,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
 import androidx.compose.foundation.layout.widthIn
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material3.Button
+import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.Card
 import androidx.compose.material3.CardDefaults
 import androidx.compose.material3.ExperimentalMaterial3Api
@@ -55,6 +57,8 @@ import com.example.mybank.ui.theme.MyBankTheme
 import com.example.mybank.ui.theme.Purple40
 import com.example.mybank.ui.theme.PurpleGrey80
 import com.example.mybank.ui.theme.corCinza
+import com.example.mybank.ui.theme.corRoxa
+import com.example.mybank.ui.theme.spaceFont
 
 
 class MainActivity : ComponentActivity() {
@@ -104,7 +108,7 @@ fun Inicio() {
                     "000",
                     fontSize = 15.sp,
                     color = Color.White,
-                   // fontFamily = spaceFont,
+                    fontFamily = spaceFont,
                     fontWeight = FontWeight.Bold,
                     modifier = Modifier
                         .align(Alignment.CenterEnd)
@@ -132,23 +136,32 @@ fun Inicio() {
             Text(
                 "CARDHOULDER NAME",
                 fontSize = 15.sp,
+                fontFamily = spaceFont,
                 fontWeight = FontWeight.Medium,
             )
             var cartao by remember { mutableStateOf("") }
+            var campoVazio = false
+
+            var vazio = cartao
+            if (vazio == ""){
+                campoVazio = true
+            }
 
            OutlinedTextField(
                textStyle = TextStyle(color = corCinza),
-                value = cartao.uppercase()
-               ,
+                value = cartao.uppercase(),
+               isError = (campoVazio),
                 onValueChange = {
                     newText -> cartao = newText
                 },
+               maxLines = 1,
                placeholder = {
                    Text(
                        "e.g. Jane Appleseed",
                        fontSize = 16.sp,
                        fontWeight = FontWeight.Medium,
-                       color = PurpleGrey80
+                       color = corCinza,
+                       fontFamily = spaceFont
                    )
                },
                shape = RoundedCornerShape(10.dp),
@@ -160,8 +173,178 @@ fun Inicio() {
                    unfocusedBorderColor = corCinza, // Ex: cinza claro quando não focado
                    focusedTextColor = corCinza,
                )
-
             )
+            Spacer(modifier = Modifier.padding(top = 20.dp))
+
+            Text(
+                "CARD NUMBER",
+                fontSize = 15.sp,
+                fontFamily = spaceFont,
+                fontWeight = FontWeight.Medium,
+            )
+
+            OutlinedTextField(
+                textStyle = TextStyle(color = corCinza),
+                value = cartao.uppercase(),
+                isError = (campoVazio),
+                onValueChange = {
+                        newText -> cartao = newText
+                },
+                maxLines = 1,
+                placeholder = {
+                    Text(
+                        "e.g. 9591 6489 6389 1011",
+                        fontSize = 16.sp,
+                        fontWeight = FontWeight.Medium,
+                        color = corCinza,
+                        fontFamily = spaceFont
+                    )
+                },
+                shape = RoundedCornerShape(10.dp),
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 5.dp)
+                ,
+                colors = TextFieldDefaults.outlinedTextFieldColors(
+                    unfocusedBorderColor = corCinza, // Ex: cinza claro quando não focado
+                    focusedTextColor = corCinza,
+                )
+            )
+            Spacer(modifier = Modifier.padding(top = 20.dp))
+
+            Row (
+                verticalAlignment = Alignment.CenterVertically,
+            ){
+                Column {
+                    Text(
+                        "EXP. DATE (MM/YY)",
+                        fontSize = 15.sp,
+                        fontFamily = spaceFont,
+                        fontWeight = FontWeight.Medium,
+                    )
+
+                    Row {
+                        OutlinedTextField(
+                            textStyle = TextStyle(color = corCinza),
+                            value = cartao.uppercase(),
+                            isError = (campoVazio),
+                            onValueChange = {
+                                    newText -> cartao = newText
+                            },
+                            maxLines = 1,
+                            placeholder = {
+                                Text(
+                                    "MM",
+                                    fontSize = 16.sp,
+                                    fontWeight = FontWeight.Medium,
+                                    color = corCinza,
+                                    fontFamily = spaceFont
+                                )
+                            },
+                            shape = RoundedCornerShape(10.dp),
+                            modifier = Modifier
+                                .width(80.dp)
+                                .padding(top = 5.dp)
+                            ,
+                            colors = TextFieldDefaults.outlinedTextFieldColors(
+                                unfocusedBorderColor = corCinza, // Ex: cinza claro quando não focado
+                                focusedTextColor = corCinza,
+                            )
+                        )
+                        Spacer(modifier = Modifier.padding(5.dp))
+                        OutlinedTextField(
+                            textStyle = TextStyle(color = corCinza),
+                            value = cartao.uppercase(),
+                            isError = (campoVazio),
+                            onValueChange = {
+                                    newText -> cartao = newText
+                            },
+                            maxLines = 1,
+                            placeholder = {
+                                Text(
+                                    "YY",
+                                    fontSize = 16.sp,
+                                    fontWeight = FontWeight.Medium,
+                                    color = corCinza,
+                                    fontFamily = spaceFont
+                                )
+                            },
+                            shape = RoundedCornerShape(10.dp),
+                            modifier = Modifier
+                                .width(80.dp)
+                                .padding(top = 5.dp)
+                            ,
+                            colors = TextFieldDefaults.outlinedTextFieldColors(
+                                unfocusedBorderColor = corCinza, // Ex: cinza claro quando não focado
+                                focusedTextColor = corCinza,
+                            )
+                        )
+
+                    }
+                }
+
+                Spacer(modifier = Modifier.padding(5.dp))
+                Column {
+                    Text(
+                        "CVC",
+                        fontSize = 15.sp,
+                        fontFamily = spaceFont,
+                        fontWeight = FontWeight.Medium,
+                    )
+                    OutlinedTextField(
+                        textStyle = TextStyle(color = corCinza),
+                        value = cartao.uppercase(),
+                        isError = (campoVazio),
+                        onValueChange = {
+                                newText -> cartao = newText
+                        },
+                        maxLines = 1,
+                        placeholder = {
+                            Text(
+                                "e.g. 123",
+                                fontSize = 16.sp,
+                                fontWeight = FontWeight.Medium,
+                                color = corCinza,
+                                fontFamily = spaceFont
+                            )
+                        },
+                        shape = RoundedCornerShape(10.dp),
+                        modifier = Modifier
+                            .width(150.dp)
+                            .padding(top = 5.dp)
+                        ,
+                        colors = TextFieldDefaults.outlinedTextFieldColors(
+                            unfocusedBorderColor = corCinza, // Ex: cinza claro quando não focado
+                            focusedTextColor = corCinza,
+                        )
+                    )
+
+                }
+
+
+
+
+            }
+
+            Button(
+                onClick = { /*TODO*/ },
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = 30.dp)
+                    .height(60.dp),
+                shape = RoundedCornerShape(10.dp),
+                colors = ButtonDefaults.buttonColors(corRoxa)
+            ) {
+                Text(
+                    "Confirm",
+                    fontSize = 18.sp,
+                    fontWeight = FontWeight.Medium,
+                    color = corCinza,
+                    fontFamily = spaceFont
+                )
+
+            }
+
 
         }
 
@@ -215,7 +398,7 @@ fun CardFront(cardNumber : String, name : String,  expDate : String) {
                 Text(
                     cardNumber,
                     fontSize = 25.sp,
-                  //  fontFamily = spaceFont,
+                    fontFamily = spaceFont,
                     color = Color.White,
                     textAlign = TextAlign.Center,
                     modifier = Modifier.align(Alignment.CenterHorizontally)
@@ -232,14 +415,14 @@ fun CardFront(cardNumber : String, name : String,  expDate : String) {
                     Text(
                         name.uppercase(),
                         fontSize = 10.sp,
-                      //  fontFamily = spaceFont,
+                       fontFamily = spaceFont,
                         fontWeight = FontWeight.Bold,
                         color = Color.White,
                     )
                     Text(
                         expDate,
                         fontSize = 12.sp,
-                      //  fontFamily = spaceFont,
+                       fontFamily = spaceFont,
                         fontWeight = FontWeight.Bold,
                         color = Color.White,
                     )
