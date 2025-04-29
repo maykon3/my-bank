@@ -6,6 +6,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import androidx.compose.foundation.BorderStroke
+import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
@@ -72,6 +73,8 @@ class MainActivity : ComponentActivity() {
         }
     }
 }
+
+
 
 
 @OptIn(ExperimentalMaterial3Api::class)
@@ -370,7 +373,7 @@ fun CardFront(cardNumber : String, name : String,  expDate : String) {
             ) {
                 Row(
                     verticalAlignment = Alignment.CenterVertically,
-                    modifier = Modifier.padding(8.dp)
+                    modifier = Modifier.offset(y = (-20).dp)
 
                 ) {
                     Card(
@@ -391,9 +394,18 @@ fun CardFront(cardNumber : String, name : String,  expDate : String) {
 
                     ) {}
 
+                    Spacer(modifier = Modifier.padding(start = 120.dp))
+
+                    Image(
+                        painter = painterResource(id = R.drawable.mastercard_logo_wine),
+                        contentDescription = "",
+                        modifier = Modifier.size(70.dp)
+
+                    )
+
                 }
 
-                Spacer(modifier = Modifier.padding(top = 25.dp))
+
 
                 Text(
                     cardNumber,
